@@ -55,7 +55,18 @@ export default {
                 "pmouseX",
                 "pmouseY"
               ])
+            ),
+          mouseDragged: () =>
+            this.$emit(
+              "mouse-dragged",
+              this.filterByKeys(sketch, [
+                "mouseX",
+                "mouseY",
+                "pmouseX",
+                "pmouseY"
+              ])
             )
+            
         }),
       "p5-container"
     );
