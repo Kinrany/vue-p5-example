@@ -15,17 +15,17 @@
         Checkout <code>./README.md</code> for more usages.
       </span>
     </div>
-    <p5-user></p5-user>
+    <p5-example></p5-example>
   </div>
 </template>
 
 <script>
-import p5UserVue from "./p5-user.vue";
+import p5UserVue from "./p5-example.vue";
 
 export default {
   name: "app",
   components: {
-    "p5-user": p5UserVue
+    "p5-example": p5UserVue
   }
 };
 </script>

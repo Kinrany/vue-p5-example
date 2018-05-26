@@ -23,7 +23,7 @@
 import p5Vue from "./p5.vue";
 
 export default {
-  name: "p5-user",
+  name: "p5-example",
   components: {
     p5: p5Vue
   },
