@@ -1,8 +1,5 @@
 <template>
-  <div>
-    This is a p5 component!
-    <div id="p5-container"></div>
-  </div>
+  <div id="p5-container"></div>
 </template>
 
 <script>
@@ -31,6 +28,11 @@ export default {
         this.$emit("update");
         this.draw(sketch, this.state);
       };
+
+      sketch.keyPressed = () => this.$emit("key-pressed", sketch.keyCode);
+      sketch.keyReleased = () => this.$emit("key-released", sketch.keyCode);
+      sketch.keyTyped = () => this.$emit("key-typed", sketch.key);
+
     }, "p5-container");
   }
 };
