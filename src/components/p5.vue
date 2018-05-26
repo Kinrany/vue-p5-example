@@ -9,7 +9,7 @@
 import p5 from "p5";
 
 export default {
-  name: "vue-p5-component",
+  name: "p5",
   props: {
     draw: {
       type: Function,
