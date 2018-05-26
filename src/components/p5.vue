@@ -10,11 +10,7 @@ import p5 from "p5";
 
 export default {
   name: "vue-p5-component",
-  methods: {
-    draw(sketch) {
-      sketch.background(255, 200, 0);
-    }
-  },
+  props: ['draw'],
   mounted() {
     new p5(sketch => {
       sketch.setup = () => sketch.createCanvas(200, 200);

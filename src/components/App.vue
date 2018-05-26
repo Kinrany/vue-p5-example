@@ -15,7 +15,7 @@
         Checkout <code>./README.md</code> for more usages.
       </span>
     </div>
-    <p5></p5>
+    <p5 :draw="p5_draw"></p5>
   </div>
 </template>
 
@@ -24,6 +24,11 @@ import p5 from "./p5.vue";
 
 export default {
   name: "app",
+  data: () => ({
+    p5_draw: sketch => {
+      sketch.background(255, 200, 0);
+    }
+  }),
   components: {
     p5: p5
   }
