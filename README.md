@@ -1,23 +1,21 @@
-# vue-p5-component
+# vue-p5-example
 
-> A Vue component for p5.js
+Example project for [vue-p5](https://github.com/Kinrany/vue-p5).
 
 ## Commands
 
-You can replace `yarn` with `npm run` here.
-
 ```bash
 # build for production
-yarn build
+npm run build
 
 # development mode
-yarn dev
+npm run dev
 
 # run unit tests
-yarn test
+npm run test
 
 # serve the bundled dist folder in production mode
-yarn serve
+npm run serve
 ```
 
 ## Polyfills
@@ -26,7 +24,7 @@ By default we only polyfill `window.Promise` and `Object.assign`. You can add mo
 
 ## Analyze bundle size
 
-Run `yarn report` to get a report of bundle size which helps you:
+Run `npm run report` to get a report of bundle size which helps you:
 
 - Realize what's really inside your bundle
 - Find out what modules make up the most of it's size
