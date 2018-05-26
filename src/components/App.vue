@@ -15,7 +15,8 @@
         Checkout <code>./README.md</code> for more usages.
       </span>
     </div>
-    <p5 :draw="p5_draw"></p5>
+    <button @click="p5_state.red = 0">Remove red color</button>
+    <p5 :draw="p5_draw" :state="p5_state"></p5>
   </div>
 </template>
 
@@ -25,8 +26,13 @@ import p5 from "./p5.vue";
 export default {
   name: "app",
   data: () => ({
-    p5_draw: sketch => {
-      sketch.background(255, 200, 0);
+    p5_draw: (sketch, state) => {
+      sketch.background(state.red, state.green, state.blue);
+    },
+    p5_state: {
+      red: 255,
+      green: 200,
+      blue: 0
     }
   }),
   components: {
