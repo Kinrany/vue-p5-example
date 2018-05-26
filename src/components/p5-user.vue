@@ -4,7 +4,9 @@
         :setup="setup" 
         :draw="draw" 
         @update="update" 
-        @key-pressed="keyPressed"></p5>
+        @key-pressed="keyPressed"
+        @mouse-moved="mouseMoved"
+        @mouse-dragged="mouseDragged"></p5>
     <p>Colors:</p>
     <ul>
       <li>Red: {{ state.red }}</li>
@@ -13,6 +15,7 @@
     </ul>
     <p>Press <button @click="toggleRed()">button</button> to toggle red color</p>
     <p>Press <code>g</code> to toggle green color</p>
+    <p>Use mouse to draw lines</p>
   </div>
 </template>
 
@@ -30,12 +33,18 @@ export default {
         sketch.createCanvas(300, 150);
       },
       draw: (sketch, state) => {
-        sketch.background(state.red, state.green, state.blue);
+        const { red, green, blue, lines } = state;
+        sketch.background(red, green, blue);
+        for (let line of lines) {
+          sketch.stroke(line.color);
+          sketch.line(line.pmouseX, line.pmouseY, line.mouseX, line.mouseY);
+        }
       },
       state: {
         red: 255,
         green: 0,
-        blue: 0
+        blue: 0,
+        lines: []
       }
     };
   },
@@ -52,11 +61,22 @@ export default {
         this.toggleGreen();
       }
     },
+    mouseMoved({ mouseX, mouseY, pmouseX, pmouseY }) {
+      this.pushLine({ mouseX, mouseY, pmouseX, pmouseY, color: 0 });
+    },
+    mouseDragged({ mouseX, mouseY, pmouseX, pmouseY }) {
+      this.pushLine({ mouseX, mouseY, pmouseX, pmouseY, color: 255 });
+    },
     toggleRed() {
       this.state.red = 255 - this.state.red;
     },
     toggleGreen() {
       this.state.green = 255 - this.state.green;
+    },
+    pushLine(line) {
+      let lines = this.state.lines;
+      lines.push(line);
+      this.state.lines = lines.slice(-100);
     }
   }
 };
