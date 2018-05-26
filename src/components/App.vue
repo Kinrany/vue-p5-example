@@ -16,7 +16,7 @@
       </span>
     </div>
     <button @click="p5_state.red = 0">Remove red color</button>
-    <p5 :draw="p5_draw" :state="p5_state"></p5>
+    <p5 :draw="p5_draw" :state="p5_state" @update="p5_update"></p5>
   </div>
 </template>
 
@@ -25,18 +25,28 @@ import p5 from "./p5.vue";
 
 export default {
   name: "app",
-  data: () => ({
-    p5_draw: (sketch, state) => {
-      sketch.background(state.red, state.green, state.blue);
-    },
-    p5_state: {
-      red: 255,
-      green: 200,
-      blue: 0
-    }
-  }),
   components: {
     p5: p5
+  },
+  data() {
+    return {
+      p5_draw: (sketch, state) => {
+        sketch.background(state.red, state.green, state.blue);
+      },
+      p5_state: {
+        red: 255,
+        green: 200,
+        blue: 0
+      }
+    };
+  },
+  methods: {
+    p5_update() {
+      this.p5_state.blue += 3;
+      if (this.p5_state.blue > 255) {
+        this.p5_state.blue = 0;
+      }
+    }
   }
 };
 </script>
