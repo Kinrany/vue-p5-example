@@ -1,7 +1,18 @@
 <template>
   <div>
-    <button @click="state.red = 0">Remove red color</button>
-    <p5 :draw="draw" :state="state" @update="update" :setup="setup"></p5>
+    <p5 :state="state" 
+        :setup="setup" 
+        :draw="draw" 
+        @update="update" 
+        @key-pressed="keyPressed"></p5>
+    <p>Colors:</p>
+    <ul>
+      <li>Red: {{ state.red }}</li>
+      <li>Green: {{ state.green }}</li>
+      <li>Blue: {{ state.blue }}</li>
+    </ul>
+    <p>Press <button @click="toggleRed()">button</button> to toggle red color</p>
+    <p>Press <code>g</code> to toggle green color</p>
   </div>
 </template>
 
@@ -23,7 +34,7 @@ export default {
       },
       state: {
         red: 255,
-        green: 200,
+        green: 0,
         blue: 0
       }
     };
@@ -34,6 +45,18 @@ export default {
       if (this.state.blue > 255) {
         this.state.blue = 0;
       }
+    },
+    keyPressed(keyCode) {
+      // 'g' key
+      if (keyCode === 71) {
+        this.toggleGreen();
+      }
+    },
+    toggleRed() {
+      this.state.red = 255 - this.state.red;
+    },
+    toggleGreen() {
+      this.state.green = 255 - this.state.green;
     }
   }
 };
