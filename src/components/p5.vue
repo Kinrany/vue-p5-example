@@ -10,10 +10,23 @@ import p5 from "p5";
 
 export default {
   name: "vue-p5-component",
-  props: ["draw", "state"],
+  props: {
+    draw: {
+      type: Function,
+      required: true
+    },
+    state: null, // null matches any type
+    setup: {
+      type: Function,
+      default: () => {}
+    }
+  },
+  data() {
+    return { sketch: null };
+  },
   mounted() {
     new p5(sketch => {
-      sketch.setup = () => sketch.createCanvas(200, 200);
+      sketch.setup = () => this.setup(sketch);
       sketch.draw = () => {
         this.$emit("update");
         this.draw(sketch, this.state);

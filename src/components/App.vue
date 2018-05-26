@@ -16,7 +16,7 @@
       </span>
     </div>
     <button @click="p5_state.red = 0">Remove red color</button>
-    <p5 :draw="p5_draw" :state="p5_state" @update="p5_update"></p5>
+    <p5 :draw="p5_draw" :state="p5_state" @update="p5_update" :setup="p5_setup"></p5>
   </div>
 </template>
 
@@ -30,6 +30,9 @@ export default {
   },
   data() {
     return {
+      p5_setup: (sketch) => {
+        sketch.createCanvas(300, 150);
+      },
       p5_draw: (sketch, state) => {
         sketch.background(state.red, state.green, state.blue);
       },
