@@ -6,16 +6,18 @@
         @update="update" 
         @key-pressed="keyPressed"
         @mouse-moved="mouseMoved"
-        @mouse-dragged="mouseDragged"></p5>
-    <p>Colors:</p>
-    <ul>
-      <li>Red: {{ state.red }}</li>
-      <li>Green: {{ state.green }}</li>
-      <li>Blue: {{ state.blue }}</li>
-    </ul>
-    <p>Press <button @click="toggleRed()">button</button> to toggle red color</p>
-    <p>Press <code>g</code> to toggle green color</p>
-    <p>Use mouse to draw lines</p>
+        @mouse-dragged="mouseDragged">
+    </p5>
+    <p>
+      Red: {{ state.red }} <br/>
+      Green: {{ state.green }} <br/>
+      Blue: {{ state.blue }} <br/>
+    </p>
+    <p>
+      Press <button @click="toggleRed()">button</button> to toggle red color <br/>
+      Press <code>g</code> to toggle green color <br/>
+      Use mouse to draw lines <br/>
+    </p>
   </div>
 </template>
 
