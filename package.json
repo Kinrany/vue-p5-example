@@ -21,7 +21,7 @@
     "offline-plugin": "^4.8.0",
     "p5": "^0.6.1",
     "promise-polyfill": "^6.0.2",
-    "vue-p5": "^0.1.1"
+    "vue-p5": "^0.1.2"
   },
   "devDependencies": {
     "poi": "^9.0.0",
