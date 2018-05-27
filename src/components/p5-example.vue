@@ -22,12 +22,12 @@
 </template>
 
 <script>
-import p5Vue from "vue-p5";
+import VueP5 from "vue-p5";
 
 export default {
   name: "p5-example",
   components: {
-    p5: p5Vue
+    p5: VueP5
   },
   data() {
     return {
