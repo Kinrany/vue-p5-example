@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import p5Vue from "./p5.vue";
+import p5Vue from "vue-p5";
 
 export default {
   name: "p5-example",
