@@ -7,9 +7,9 @@
         @mouse-dragged="mouseDragged">
     </p5>
     <p>
-      Red: {{ state.red }} <br/>
-      Green: {{ state.green }} <br/>
-      Blue: {{ state.blue }} <br/>
+      Red: {{ red }} <br/>
+      Green: {{ green }} <br/>
+      Blue: {{ blue }} <br/>
     </p>
     <p>
       Press <button @click="toggleRed()">button</button> to toggle red color <br/>
