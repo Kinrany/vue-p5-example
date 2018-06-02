@@ -1,7 +1,7 @@
 <template>
   <div>
-    <p5 :setup="setup" 
-        :draw="draw"
+    <p5 @setup="setup" 
+        @draw="draw"
         @key-pressed="keyPressed"
         @mouse-moved="mouseMoved"
         @mouse-dragged="mouseDragged">
@@ -47,7 +47,7 @@ export default {
         sketch.line(line.pmouseX, line.pmouseY, line.mouseX, line.mouseY);
       }
     },
-    keyPressed(keyCode) {
+    keyPressed({keyCode}) {
       // 'g' key
       if (keyCode === 71) {
         this.toggleGreen();
