@@ -1,11 +1,11 @@
 <template>
   <div>
-    <p5 @setup="setup" 
+    <vue-p5 @setup="setup" 
         @draw="draw"
         @key-pressed="keyPressed"
         @mouse-moved="mouseMoved"
         @mouse-dragged="mouseDragged">
-    </p5>
+    </vue-p5>
     <p>
       Red: {{ red }} <br/>
       Green: {{ green }} <br/>
@@ -25,7 +25,7 @@ import VueP5 from "vue-p5";
 export default {
   name: "p5-example",
   components: {
-    p5: VueP5
+    "vue-p5": VueP5
   },
   data: () => ({
     red: 255,
