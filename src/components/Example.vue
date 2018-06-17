@@ -1,6 +1,9 @@
 <template>
   <div>
-    <vue-p5 @setup="setup" 
+    <vue-p5 
+        @sketch="sketch"
+        @preload="preload"
+        @setup="setup" 
         @draw="draw"
         @key-pressed="keyPressed"
         @mouse-moved="mouseMoved"
@@ -31,23 +34,35 @@ export default {
     red: 255,
     green: 0,
     blue: 0,
-    lines: []
+    lines: [],
+    backgroundImage: null
   }),
   methods: {
+    sketch(sketch) {
+      sketch.draw = () => {
+        this.blue = (this.blue + 3) % 255;
+
+        const { red, green, blue } = this;
+        sketch.background(red, green, blue);
+      };
+    },
+    preload(sketch) {
+      this.backgroundImage = sketch.loadImage("static/p5js.png");
+      console.log(this.backgroundImage);
+    },
     setup(sketch) {
-      sketch.createCanvas(300, 150);
+      sketch.createCanvas(400, 400);
     },
     draw(sketch) {
-      this.blue = (this.blue + 3) % 255;
+      const { width, height } = sketch;
+      sketch.image(this.backgroundImage, 0, 0, 0.5 * width, 0.5 * height);
 
-      const { red, green, blue, lines } = this;
-      sketch.background(red, green, blue);
-      for (let line of lines) {
+      for (let line of this.lines) {
         sketch.stroke(line.color);
         sketch.line(line.pmouseX, line.pmouseY, line.mouseX, line.mouseY);
       }
     },
-    keyPressed({keyCode}) {
+    keyPressed({ keyCode }) {
       // 'g' key
       if (keyCode === 71) {
         this.toggleGreen();
