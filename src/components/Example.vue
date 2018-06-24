@@ -5,9 +5,9 @@
         @preload="preload"
         @setup="setup" 
         @draw="draw"
-        @key-pressed="keyPressed"
-        @mouse-moved="mouseMoved"
-        @mouse-dragged="mouseDragged">
+        @keypressed="keyPressed"
+        @mousemoved="mouseMoved"
+        @mousedragged="mouseDragged">
     </vue-p5>
     <p>
       Red: {{ red }} <br/>
