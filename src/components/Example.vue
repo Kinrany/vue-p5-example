@@ -48,7 +48,6 @@ export default {
     },
     preload(sketch) {
       this.backgroundImage = sketch.loadImage("static/p5js.png");
-      console.log(this.backgroundImage);
     },
     setup(sketch) {
       sketch.createCanvas(400, 400);
