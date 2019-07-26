@@ -1,9 +1,8 @@
 <template>
   <div>
-    <vue-p5 
-        @sketch="sketch"
+    <vue-p5
         @preload="preload"
-        @setup="setup" 
+        @setup="setup"
         @draw="draw"
         @keypressed="keyPressed"
         @mousemoved="mouseMoved"
@@ -31,30 +30,47 @@ export default {
     "vue-p5": VueP5
   },
   data: () => ({
-    red: 255,
-    green: 0,
-    blue: 0,
+    red: 0,
+    green: 255,
+    // blue color is a computed property that changes over time
     lines: [],
-    backgroundImage: null
+    p5LogoImage: null,
+    startTime: Date.now(),
+    // store current time in data to force computed properties to update
+    currentTime: Date.now(),
   }),
-  methods: {
-    sketch(sketch) {
-      sketch.draw = () => {
-        this.blue = (this.blue + 3) % 255;
-
-        const { red, green, blue } = this;
-        sketch.background(red, green, blue);
-      };
+  computed: {
+    msSinceStart() {
+      return this.currentTime - this.startTime;
     },
+    blue() {
+      return Math.floor(this.msSinceStart * 0.03) % 255;
+    },
+    p5LogoRotationAngle() {
+      return this.msSinceStart * 0.0001 % Math.PI * 2;
+    }
+  },
+  methods: {
     preload(sketch) {
-      this.backgroundImage = sketch.loadImage("static/p5js.png");
+      this.p5LogoImage = sketch.loadImage("static/p5js.png");
     },
     setup(sketch) {
       sketch.createCanvas(400, 400);
     },
     draw(sketch) {
-      const { width, height } = sketch;
-      sketch.image(this.backgroundImage, 0, 0, 0.5 * width, 0.5 * height);
+      this.currentTime = Date.now();
+
+      const { red, green, blue } = this;
+      sketch.background(red, green, blue);
+
+      const logoWidth = sketch.width / 3;
+      const logoHeight = sketch.height / 3;
+
+      // logo should be in the middle of the screen and rotated
+      sketch.translate(sketch.width / 2, sketch.height / 2);
+      sketch.rotate(this.p5LogoRotationAngle);
+      sketch.image(this.p5LogoImage, -logoWidth / 2, -logoHeight/2, logoWidth, logoHeight);
+      sketch.resetMatrix();
 
       for (let line of this.lines) {
         sketch.stroke(line.color);
