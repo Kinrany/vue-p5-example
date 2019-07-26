@@ -14,6 +14,5 @@ npm run build
 
 ### Watch mode
 
-```
-npm run dev
-```
+1. `npm run dev`
+2. Open http://localhost:8080/
