@@ -78,7 +78,7 @@ export default defineComponent({
   },
   methods: {
     preload(sketch: P5) {
-      this.p5LogoImage = sketch.loadImage("public/p5js.png");
+      this.p5LogoImage = sketch.loadImage("p5js.png");
     },
     setup(sketch: P5) {
       sketch.createCanvas(400, 400);
