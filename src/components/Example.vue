@@ -50,7 +50,7 @@ export default defineComponent({
     // START_TIME doesn't need to change over time.
     const START_TIME = Date.now();
     const currentTime = ref(Date.now());
-    const msSinceStart = computed(() => START_TIME - currentTime.value);
+    const msSinceStart = computed(() => currentTime.value - START_TIME);
 
     // Values for red and green color can be changed by the player,
     // while the value for blue color will change over time on its own.
@@ -86,8 +86,7 @@ export default defineComponent({
     draw(sketch: P5) {
       this.currentTime = Date.now();
 
-      const { red, green, blue } = this;
-      sketch.background(red, green, blue);
+      sketch.background(this.red, this.green, this.blue);
 
       const logoWidth = sketch.width / 3;
       const logoHeight = sketch.height / 3;

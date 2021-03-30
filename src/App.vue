@@ -1,5 +1,4 @@
 <template>
-  <img alt="Vue logo" src="./assets/p5js.png" width="250" height="250" />
   <Example />
 </template>
 
