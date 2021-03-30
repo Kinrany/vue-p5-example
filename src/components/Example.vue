@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts">
-import { ref, defineComponent, Component, computed } from "vue";
+import { ref, defineComponent, computed } from "vue";
 import VueP5 from "vue-p5";
 import P5 from "p5";
 
