@@ -5,7 +5,6 @@
       @setup="setup"
       @draw="draw"
       @keypressed="keyPressed"
-      @mousemoved="mouseMoved"
       @mousedragged="mouseDragged"
     ></VueP5>
     <p>
@@ -37,7 +36,6 @@ type Line = {
   mouseY: number,
   pmouseX: number,
   pmouseY: number,
-  color: number,
 };
 
 export default defineComponent({
@@ -58,7 +56,7 @@ export default defineComponent({
     const green = ref(255);
     const blue = computed(() => Math.floor(msSinceStart.value * 0.03) % 255);
 
-    // Colored lines drawn on the canvas.
+    // Lines drawn on the canvas.
     const lines = ref<Line[]>([]);
 
     // Image asset and current rotation angle for the rotating p5.js logo.
@@ -104,7 +102,7 @@ export default defineComponent({
       sketch.resetMatrix();
 
       for (let line of this.lines) {
-        sketch.stroke(line.color);
+        sketch.stroke('black');
         sketch.line(line.pmouseX, line.pmouseY, line.mouseX, line.mouseY);
       }
     },
@@ -114,11 +112,8 @@ export default defineComponent({
         this.toggleGreen();
       }
     },
-    mouseMoved({ mouseX, mouseY, pmouseX, pmouseY }: P5) {
-      this.pushLine({ mouseX, mouseY, pmouseX, pmouseY, color: 0 });
-    },
     mouseDragged({ mouseX, mouseY, pmouseX, pmouseY }: P5) {
-      this.pushLine({ mouseX, mouseY, pmouseX, pmouseY, color: 255 });
+      this.pushLine({ mouseX, mouseY, pmouseX, pmouseY });
     },
     toggleRed() {
       this.red = 255 - this.red;
